@@ -1,0 +1,6 @@
+// Cấu hình complier
+{
+    "presets": [
+        "@babel/preset-env"
+    ]
+}

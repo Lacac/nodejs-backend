@@ -1,0 +1,2 @@
+- ES6
+- Biến var (global) & let (chỉ trong file)
