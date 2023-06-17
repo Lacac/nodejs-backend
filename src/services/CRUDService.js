@@ -83,7 +83,7 @@ let updateUserData = (data) => {
             user.set({
                 firstName: data.firstName,
                 lastName: data.lastName,
-                address: user.address,
+                address: data.address,
             });
             await user.save();
             let allUser = await db.User.findAll();
