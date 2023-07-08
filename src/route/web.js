@@ -23,7 +23,7 @@ let initWebRoutes = (app) => {
 
 
 // React
-    router.get('/api/login', userController.handleLogin);
+    router.post('/api/login', userController.handleLogin);
 
 
 
