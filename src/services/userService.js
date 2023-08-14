@@ -107,21 +107,23 @@ let createNewUser = async (data) => {
                     message: 'Your email is already in use. Try another email !!!'
                 })
             }
-            let hashPasswordFromBcrypt = await hashUserPassword(data.password)
-            await db.User.create({
-                email: data.email,
-                password: hashPasswordFromBcrypt,
-                firstName: data.firstName,
-                lastName: data.lastName,
-                address: data.address,
-                gender: data.gender === '1' ? true : false,
-                phonenumber: data.phonenumber,
-                roleId: data.roleId
-            })
-            resolve({
-                errCode: 0,
-                message: 'OK'
-            })
+            else {
+                let hashPasswordFromBcrypt = await hashUserPassword(data.password)
+                await db.User.create({
+                    email: data.email,
+                    password: hashPasswordFromBcrypt,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    address: data.address,
+                    gender: data.gender === '1' ? true : false,
+                    phonenumber: data.phonenumber,
+                    roleId: data.roleId
+                })
+                resolve({
+                    errCode: 0,
+                    message: 'OK'
+                })
+            }
         } catch (err) {
             reject(e);
             // resolve({
@@ -183,12 +185,12 @@ let updateUserData = (data) => {
         try {
             if (!data.id) {
                 resolve({
-                    errCode: 2, 
+                    errCode: 2,
                     errMessage: 'Missing required parameter!'
                 })
             }
             let user = await db.User.findOne({
-                where: { id: data.id }, 
+                where: { id: data.id },
                 raw: false
             });
             if (user) {
@@ -202,7 +204,7 @@ let updateUserData = (data) => {
                     errCode: 0,
                     message: 'Update the user succeeds!'
                 });
-            }else {
+            } else {
                 resolve({
                     errCode: 1,
                     message: 'Not found the user!'
